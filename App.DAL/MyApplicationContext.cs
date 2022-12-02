@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace App.DAL
 {
-    public class MyApplicationContext: DbContext
+    public class MyApplicationContext : DbContext
     {
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
@@ -19,6 +19,8 @@ namespace App.DAL
             modelBuilder.Entity<Product>()
                 .HasOne(p => p.Order)
                 .WithMany(o => o.Products)
+                .HasForeignKey(pa => pa.OrderId)
+                .IsRequired(false)
                 .OnDelete(DeleteBehavior.ClientSetNull);
         }
     }
