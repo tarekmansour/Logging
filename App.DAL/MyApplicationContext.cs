@@ -9,5 +9,17 @@ namespace App.DAL
         public DbSet<Order> Orders { get; set; }
 
         public MyApplicationContext(DbContextOptions<MyApplicationContext> options) : base(options) { }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Order>().HasKey(o => o.Id);
+
+            modelBuilder.Entity<Product>().HasKey(p => p.Id);
+
+            modelBuilder.Entity<Product>()
+                .HasOne(p => p.Order)
+                .WithMany(o => o.Products)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+        }
     }
 }
