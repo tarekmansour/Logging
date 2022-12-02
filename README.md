@@ -8,4 +8,5 @@ Demonstrate Logging into text file and Azure
 2. Create empty database on SQL SERVER called `MyApplicationDb`
 3. Install [Dotnet ef tool](https://learn.microsoft.com/en-us/ef/core/get-started/overview/install)
   - or run `dotnet tool install --global dotnet-ef`
-3. Update db with migrations: `dotnet ef database update`
+4. Update db with migrations: `dotnet ef database update`
+
